@@ -5,15 +5,16 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import web.dao.CarDAO;
 import web.service.CarService;
 
 
 @Controller
-public class CarsController {
+public class CarController {
     private final CarService carService;
 
     @Autowired
-    protected CarsController(CarService carService) {
+    protected CarController(CarService carService) {
         this.carService = carService;
     }
 
