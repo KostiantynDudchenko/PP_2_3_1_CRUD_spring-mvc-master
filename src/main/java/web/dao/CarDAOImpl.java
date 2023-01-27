@@ -3,6 +3,7 @@ package web.dao;
 
 import org.springframework.stereotype.Repository;
 import web.model.Car;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,10 +19,15 @@ public class CarDAOImpl implements CarDAO {
         carList.add(new Car("Hyundai", "Minivan", 2020));
         carList.add(new Car("BMW", "SportCar", 2004));
     }
+
     @Override
     public List<Car> getCars(int count) {
-        if(count > carList.size()) count = carList.size();
-        if(count < 0) count = 0;  // Exclude IndexOutOfBoundsException
+        if (count > carList.size()) {
+            count = carList.size();
+        }
+        if (count < 0) {
+            count = 0;  // Exclude IndexOutOfBoundsException
+        }
         return carList.subList(0, count);
     }
 }
