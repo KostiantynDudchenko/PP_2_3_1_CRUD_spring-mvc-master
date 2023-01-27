@@ -1,25 +1,27 @@
 package web.dao;
 
-import org.hibernate.SessionFactory;
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Repository;
 import web.model.Car;
-
-import javax.persistence.TypedQuery;
+import java.util.ArrayList;
 import java.util.List;
 
 @Repository
 public class CarDAOImpl implements CarDAO {
 
-    @Autowired
-    private SessionFactory sessionFactory;
+    private static final List<Car> carList = new ArrayList<>();
 
+    static {
+        carList.add(new Car("Honda", "Sedan", 1999));
+        carList.add(new Car("Mazda", "HatchBack", 2001));
+        carList.add(new Car("Volvo", "Universal", 2003));
+        carList.add(new Car("Hyundai", "Minivan", 2020));
+        carList.add(new Car("BMW", "SportCar", 2004));
+    }
     @Override
     public List<Car> getCars(int count) {
-        String hql = "FROM Car";
-        TypedQuery<Car> query = sessionFactory.getCurrentSession().createQuery(hql);
-        query.setFirstResult(0);
-        query.setMaxResults(count);
-        return query.getResultList();
+        if(count > 5) count = 5;
+        if(count < 0) count = 0;  // Exclude IndexOutOfBoundsException
+        return carList.subList(0, count);
     }
 }

@@ -1,28 +1,10 @@
 package web.model;
 
-import javax.persistence.*;
-
-@Entity
-@Table(name = "cars")
 public class Car {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
-    private Long id;
-    @Column(name = "model")
+
     private String model;
-    @Column(name = "type")
     private String type;
-    @Column(name = "yearOfBuild")
     private int yearOfBuild;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public Car() {
     }
