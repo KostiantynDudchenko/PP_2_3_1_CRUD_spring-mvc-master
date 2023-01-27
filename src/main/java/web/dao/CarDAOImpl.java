@@ -20,7 +20,7 @@ public class CarDAOImpl implements CarDAO {
     }
     @Override
     public List<Car> getCars(int count) {
-        if(count > 5) count = 5;
+        if(count > carList.size()) count = carList.size();
         if(count < 0) count = 0;  // Exclude IndexOutOfBoundsException
         return carList.subList(0, count);
     }
