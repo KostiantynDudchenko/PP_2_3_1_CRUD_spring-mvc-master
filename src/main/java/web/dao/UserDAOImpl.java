@@ -30,12 +30,9 @@ public class UserDAOImpl implements UserDAO {
     }
 
     @Override
+    @Transactional
     public void update(int id, User user) {
-        User userToBeUpdate = show(id);
-        userToBeUpdate.setName(user.getName());
-        userToBeUpdate.setSurname(user.getSurname());
-        userToBeUpdate.setAge(user.getAge());
-        entityManager.merge(userToBeUpdate);
+        entityManager.merge(user);
     }
 
     @Override
